@@ -1,4 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Roboto:wght@400;700&display=swap');
+
 *{
     box-sizing: border-box;
+    transition: all 0.2s;
 }
 
+#root{
+    margin: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.jogo{
+    display: flex;
+    justify-content: space-between;
+}
+
+.jogo-esquerda > img{
+    height: 400px;
+    width: auto;
+}
+
+.jogo-direita{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.jogo-direita > button{
+    width: 200px;
+    height: 60px;
+    border-radius: 8px;
+    background-color: #27AE60;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: auto;
+}
+
+.jogo-direita > span{
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 50px;
+}
+
+.jogo-embaixo{
+    margin: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    
+}
+
+.letras{
+    width: 750px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.botao-letra{
+    margin: 7px;
+    margin-bottom: 10px;
+    width: 40px;
+    height: 40px;
+    color: #3C76A1;
+    background-color: #E1ECF4;
+    border: 1px solid #7AA7C7;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+button:disabled{
+    cursor: default !important;
+    background-color: #9FAAB5 !important;
+    color: #798A9F !important;
+}
+
+.chute{
+    display: flex;
+    justify-content: space-between;
+    width: 700px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.chute > *{
+    border-radius: 3px;
+    margin: 10px 5px;
+}
+
+.chute > span{
+    font-weight: 400;
+}
+
+.chute > input{
+    width: 350px;
+    height: 40px;
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.chute > input:disabled{
+    background-color: rgb(220, 220, 220);
+}
+
+.chute > button{
+    background-color: #E1ECF4;
+    border: 1px solid #7AA7C7;
+    width: 100px;
+    height: 40px;
+    color: #3C76A1;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.verde{
+    color: #27AE60 !important;
+}
+
+.vermelho{
+    color: #FF0000 !important;
+}
+
+@media(max-width: 800px){
+    #root{
+        margin: 60px 5vw;
+    }
+
+    .jogo-esquerda > img{
+        width: auto;
+        height: 50vw;
+    }
+
+    .jogo-direita > button{
+        width: 25vw;
+    }
+
+    .jogo-direita > span{
+        font-size: 6vw;
+    }
+
+    .letras{
+        width: 90vw;
+    }
+
+    .chute{
+        flex-direction: column;
+        height: fit-content;
+    }
+}
