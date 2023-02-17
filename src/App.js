@@ -24,15 +24,23 @@ export default function App(){
     letrasCertas.splice(0,letrasCertas.length);
     setChute('');
   }
+  
+  function testFimJogo(erro){
+    if(erro>5) {
+      setJogando(false);
+      setVenceu(false);
+      setPalavra(resposta);
+    }
+  }
 
   function tentarLetra(letra){
-    setLetrasChutadas([...letrasChutadas, letra]);
-    console.log([...letrasChutadas, letra]);
-    console.log(resposta);
+    const novaLetra=[...letrasChutadas, letra];
+    setLetrasChutadas(novaLetra );
+    console.log(novaLetra );
     
-    if(resposta.includes(letra)){
+    if(resposta.normalize('NFD').replace(/[^A-Za-z]/g,'').includes(letra)){
       letrasCertas.push(letra);
-      const updatePalavra=resposta.split('').map(e=>letrasCertas.includes(e)?e:'_')
+      const updatePalavra=resposta.split('').map(e=>letrasCertas.includes(e.normalize('NFD').replace(/[^A-Za-z]/g,''))?e:'_')
       setPalavra(updatePalavra)
       
       if(!updatePalavra.includes('_')){
@@ -48,14 +56,6 @@ export default function App(){
       setErros(novoErros);
       testFimJogo(novoErros);
     } 
-  }
-
-  function testFimJogo(erro){
-    if(erro>5) {
-      setJogando(false);
-      setVenceu(false);
-      setPalavra(resposta);
-    }
   }
 
   function chutar(){
