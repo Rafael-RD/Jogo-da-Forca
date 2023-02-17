@@ -1,10 +1,10 @@
 
-export default function JogoDireita(props){
+export default function JogoDireita({palavra, jogar, jogando, venceu}){
     
     return (
         <div className="jogo-direita">
-            <button>Escolher palavra</button>
-            <span className="verde">{props.palavra}</span>
+            <button data-test="choose-word" onClick={jogar} >Escolher palavra</button>
+            <span data-test="word" className={jogando?'':venceu?"verde":"vermelho"}>{palavra.toString().replaceAll(',',' ')}</span>
         </div>
     )
 }

@@ -1,12 +1,12 @@
 import JogoDireita from "./JogoDireita";
 import JogoEsquerda from "./JogoEsquerda";
 
-export default function Jogo(props){
+export default function Jogo({erros, palavra, jogando, jogar, venceu}){
     
     return (
         <div className="jogo">
-            <JogoEsquerda forca={props.forca}/>
-            <JogoDireita palavra={props.palavra}/>
+            <JogoEsquerda erros={erros}/>
+            <JogoDireita palavra={palavra} jogar={jogar} jogando={jogando} venceu={venceu} />
         </div>
     )
 };

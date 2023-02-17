@@ -3,13 +3,75 @@ import Jogo from "./Componentes/Jogo";
 import Letras from "./Componentes/Letras";
 import palavras from "./palavras";
 
+let resposta='';
+const letrasCertas=[];
+
 export default function App(){
-  const [forca, setForca]=useState(0);
-  const [palavra, setPalavra]=useState(palavras[Math.floor(Math.random()*palavras.length)])
+  const [letrasChutadas, setLetrasChutadas]=useState([]);
+  const [palavra, setPalavra]=useState(resposta);
+  const [jogando, setJogando]=useState(false);
+  const [erros, setErros]=useState(0);
+  const [chute, setChute]=useState('');
+  const [venceu, setVenceu]=useState(false);
+
+  function jogar(){
+    setJogando(true);
+    resposta = palavras[Math.floor(Math.random()*palavras.length)];
+    setPalavra(resposta.split('').map(e=>'_'));
+    setErros(0);
+    setLetrasChutadas([]);
+    console.log(resposta)
+    letrasCertas.splice(0,letrasCertas.length);
+  }
+
+  function tentarLetra(letra){
+    setLetrasChutadas([...letrasChutadas, letra]);
+    console.log([...letrasChutadas, letra]);
+    console.log(resposta);
+    
+    if(resposta.includes(letra)){
+      letrasCertas.push(letra);
+      const updatePalavra=resposta.split('').map(e=>letrasCertas.includes(e)?e:'_')
+      setPalavra(updatePalavra)
+      
+      if(!updatePalavra.includes('_')){
+        setJogando(false);
+        setVenceu(true);
+      }
+      else{
+        console.log('acertou',letrasCertas);
+      }
+    }
+    else{
+      setErros(erros+1);
+      testFimJogo();
+    } 
+  }
+
+  function testFimJogo(){
+    if((erros+1)>5) {
+      setJogando(false);
+      setVenceu(false);
+      setPalavra(resposta);
+    }
+  }
+
+  function chutar(){
+    if(chute.toLowerCase()===resposta){
+      setJogando(false);
+      setVenceu(true);
+      setPalavra(resposta);
+    }else{
+      setErros(erros+1);
+      testFimJogo();
+    }
+    setChute('');
+}
+
   return (
     <>
-      <Jogo forca={forca} palavra={palavra} />
-      <Letras />
+      <Jogo erros={erros} jogando={jogando} jogar={jogar} palavra={palavra} venceu={venceu} />
+      <Letras jogando={jogando} chute={chute} setChute={setChute} chutar={chutar} letrasChutadas={letrasChutadas} tentarLetra={tentarLetra} />
     </>
   )
 };

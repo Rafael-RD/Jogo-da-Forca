@@ -8,11 +8,11 @@ const forcaImg=[
     "assets/forca6.png"
 ]
 
-export default function JogoEsquerda(props){
+export default function JogoEsquerda({erros}){
 
     return (
         <div className="jogo-esquerda">
-            <img src={forcaImg[props.forca]} alt="Forca" />
+            <img data-test="game-image" src={forcaImg[erros]} alt={`Forca ${erros}`} />
         </div>
     )
 }

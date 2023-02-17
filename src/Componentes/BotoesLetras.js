@@ -1,6 +1,6 @@
-export default function BotoesLetras(props){
+export default function BotoesLetras({disabled, letra, tentarLetra}){
     
     return(
-        <button disabled={props.disabled} className="botao-letra">{props.letra}</button>
+        <button data-test="letter" onClick={()=>tentarLetra(letra)} disabled={disabled} className="botao-letra">{letra.toUpperCase()}</button>
     )
 }
