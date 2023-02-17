@@ -20,8 +20,9 @@ export default function App(){
     setPalavra(resposta.split('').map(e=>'_'));
     setErros(0);
     setLetrasChutadas([]);
-    console.log(resposta)
+    console.log(resposta);
     letrasCertas.splice(0,letrasCertas.length);
+    setChute('');
   }
 
   function tentarLetra(letra){
@@ -43,13 +44,14 @@ export default function App(){
       }
     }
     else{
-      setErros(erros+1);
-      testFimJogo();
+      const novoErros=erros+1;
+      setErros(novoErros);
+      testFimJogo(novoErros);
     } 
   }
 
-  function testFimJogo(){
-    if((erros+1)>5) {
+  function testFimJogo(erro){
+    if(erro>5) {
       setJogando(false);
       setVenceu(false);
       setPalavra(resposta);
@@ -62,8 +64,9 @@ export default function App(){
       setVenceu(true);
       setPalavra(resposta);
     }else{
-      setErros(erros+1);
-      testFimJogo();
+      const novoErros=6;
+      setErros(novoErros);
+      testFimJogo(novoErros);
     }
     setChute('');
 }

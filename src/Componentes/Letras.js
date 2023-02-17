@@ -14,7 +14,7 @@ export default function Letras({jogando, chute, setChute, chutar, tentarLetra, l
             </div>
             <div className="chute">
                 <span>Já sei a palavra!</span>
-                <input data-test="guess-input" disabled={!jogando} value={chute} onInput={e=>setChute(e.target.value)}></input>
+                <input onKeyDown={(event)=>event.key==='Enter' && chute && chutar()} data-test="guess-input" disabled={!jogando} value={chute} onInput={e=>setChute(e.target.value)}></input>
                 <button data-test="guess-button" disabled={!chute} onClick={chutar}>Chutar</button>
             </div>
         </div>
